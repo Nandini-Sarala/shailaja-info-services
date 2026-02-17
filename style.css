@@ -1,0 +1,187 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+}
+
+/* MEGA MENU */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 800px;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.dropdown:hover .mega-menu {
+  display: grid;
+}
+
+.mega-column h4 {
+  margin-bottom: 10px;
+}
+
+.mega-column a {
+  display: block;
+  color: #555;
+  padding: 5px 0;
+}
+
+.mega-column a:hover {
+  color: black;
+  font-weight: bold;
+}
+
+/* SECTIONS */
+.section {
+  padding: 20px;
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+}
+
+/* PRODUCTS */
+.product-list {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+/* MOBILE */
+.menu-toggle {
+  display: none;
+  font-size: 22px;
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #222;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 100%;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .dropdown:hover .mega-menu {
+    display: none;
+  }
+
+  .mega-menu {
+    position: static;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.contact {
+  padding: 50px 20px;
+  margin-top: 50px;
+}
+
+.contact-content {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.contact-item {
+  padding: 25px 20px;
+  border-radius: 8px;
+}
+
+.contact-item i {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.contact-item h3 {
+  color:white;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.contact-item p {
+   color:white;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.contact-item a {
+  font-size: 13px;
+}

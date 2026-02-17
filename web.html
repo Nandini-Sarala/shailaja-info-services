@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shailaja Info Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="all.min.css">
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Enlarge About section styles */
+        #about {
+            padding: 3rem 1rem;
+            border-radius: 2%;
+
+        }
+
+        #about .fw-semibold.section-title {
+            color: #114ab1;
+            font-size: 2.5rem;
+        }
+
+        #about .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #114ab1;
+        }
+
+        #about .about-content p {
+            font-size: 1.05rem;
+        }
+
+        #about .card {
+            width: 40rem;
+            max-width: 80%;
+            border: none;
+        }
+
+        #about p.wide {
+            width: 40rem;
+            max-width: 100%;
+        }
+
+        #about img {
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        /* Reviews section */
+        #reviews {
+            padding: 3rem 1rem;
+            border-radius: 2%;
+        }
+
+        #reviews .section-title {
+            color: #114ab1;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        #reviews .elfsight-app-05dec3a5-8703-461b-a113-b3a667ab4bbd {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Contact section */
+        #contact {
+            padding: 2.5rem 1rem;
+            border-radius: 2%;
+            width: 100%
+        }
+
+        #contact .section-title {
+            color: #114ab1;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .contact-card {
+            width: 28rem;
+            max-width: 100%;
+        }
+
+        #contact .card-body {
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 768px) {
+            #about .about-content h2 {
+                font-size: 1.6rem;
+            }
+
+            #about .card,
+            #about p.wide {
+                width: 100%;
+            }
+
+            #about img {
+                max-height: 400px;
+            }
+
+            #reviews .section-title {
+                font-size: 1.6rem;
+            }
+
+            .contact-card {
+                width: 100%;
+            }
+
+            #reviews .elfsight-app-05dec3a5-8703-461b-a113-b3a667ab4bbd {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<!-- 6793ACclass="bg-primary-subtle"#114ab1 -->
+
+<body style="background-color:#f5f5f5;">
+    <nav style="background-color: #114ab1;" class="navbar navbar-expand-lg navbar " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="photos\logo.PNG" alt="Shailaja Info Services" width="30" height="30"
+                    class="d-inline-block align-text-top">
+                <h5 class="ms-2 fw-bold">Shailaja Info Services</h5>
+
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class=" navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <h5 class="fw-semibold">Home</h5>
+                    </a>
+                    <a class="nav-link" aria-current="page" href="products.html">
+                        <h5 class="fw-semibold">Products</h5>
+                    </a>
+                    <a class="nav-link" href="about-contact.html">
+                        <h5 class="fw-semibold">About & Contact</h5>
+                    </a>
+
+                    <!-- 
+                    <a class="nav-link" href="#">
+                        <h5 class="fw-semibold">Home</h5>
+                    </a> -->
+                    <a class="nav-link" href="#reviews">
+                        <h5 class="fw-semibold">Reviews</h5>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div id="carouselExampleCaption" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaption" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaption" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaption" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaption" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100 " height="600" width="800" src="photos\laptop.jpg" alt="nature">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h4 style="color:black;" class="fw-semibold">Sales + service</h4>
+                        <p style="color:black;" class="fw-semibold">New and refurbished laptops available — expert
+                            repairs and reliable aftercare.</p>
+                        <a href="products.html" class="btn btn-dark">explore more</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" height="800" width="600" src="photos\accessories.jpg" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 style="color:black;" class="fw-semibold">Accessories Available</h5>
+                        <p style="color:black;" class="fw-semibold">laptop and mobile accessories available</p>
+                        <a href="Access.html" class="btn btn-dark">explore accessories</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" height="800" width="600" src="photos\repair.jpg" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 style="color:black;" class="fw-semibold">Trust-focused</h3>
+                        <p style="color:black;" class="fw-semibold">We provide fast,handle diagnostics, component-level
+                            repairs and data-safe service.</p>
+                        <a href="about-contact.html" class="btn btn-dark">contact us</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" height="800" width="600" src="photos\pic1.jpeg" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 style="color:black;" class="fw-semibold">Trust-focused</h3>
+                        <p style="color:black;" class="fw-semibold">We provide fast,handle diagnostics, component-level
+                            repairs and data-safe service.</p>
+                        <a href="about-contact.html" class="btn btn-dark">contact us</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaption"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaption"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\l1.jpeg" alt="hp" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Laptops</strong>
+                            <h3 class="mb-0">HP 240 G8</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto"> Intel i3 11th generation | 8GB DDR4 RAM | 256GB nvme SSD |
+                                Windows 10</p>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a
+                                            href="products.html" class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\a1.png" alt="hp" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Laptop Accessories</strong>
+                            <h3 class="mb-0">Laptop Adapter</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto">Artis 65Watt
+                                Universal Laptop Adapter with 8 Interchangeable pins</p>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a href="Access.html"
+                                            class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\k1.PNG" alt="wireless keyboard & mouse" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">keyboards</strong>
+                            <h3 class="mb-0">HP HP115 wireless </h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto"> Wireless right handed optic mouse with bluetooth(USB
+                                2.0,Black)
+                            </p>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a
+                                            href="keyboard.html" class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\m5.PNG" alt="hp mouse" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Mouse</strong>
+                            <h3 class="mb-0">HP 240</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto"> HP 240 Bluetooth Wireless Mouse with 3 Buttons/1600
+                                DPI Red Optical Tracking/Sleek and Ambidextrous
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a href="mouse.html"
+                                            class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\wc1.PNG" alt="webcam" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Webcam</strong>
+                            <h3 class="mb-0">Zeb-live pro 1920</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto">Webcam with built-in microphone with night vision ethernet
+                                connectivity(black)
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a href="webcam.html"
+                                            class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\fs1.PNG" alt="fingerprint scanner" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Fingerprint Scanner</strong>
+                            <h3 class="mb-0">Mantra MFS110</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto">Mantra MFS110 L1 Fingerprint Scanner,Scratch free
+                                Sensor Surface,High speed USB 2.0 interface with secured communication,Auto
+                                Finger Detection
+
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a
+                                            href="fscanner.html" class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\pr1.PNG" alt="printer" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Printer</strong>
+                            <h3 class="mb-0">
+                                Brother DCP-B7600DB</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto">Brother DCP-B7600DB Multifunction Duplex Laser Printer, Best
+                                For Business With Affordable Toner,A4 print speed up to 34 ppm (Black)
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a href="printer.html"
+                                            class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\r1.PNG" alt="router" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Routers</strong>
+                            <h3 class="mb-0">
+                                D-Link DGS-1016A 16-Port Gigabit</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto">Ethernet Speed Gigabit,
+                                Number of ports 16 ports,
+                                Housing Plastic,
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a href="router.html"
+                                            class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="photos\gc3.PNG" alt="graphics" height="225" width="100%">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong class="d-inline-block mb-2 text-primary-emphasis">Aarvex</strong>
+                            <h3 class="mb-0">
+                                Aarvex Graphic Card GT610 2GB DDR3</h3>
+                            <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+                            <p class="card-text mb-auto">Memory Size: 2GB,
+                                Memory Type: DDR3,
+                                Memory Interface: 64 Bit,
+                                GPU Clock: 612 MHz.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary"> <a
+                                            href="graphics.html" class="btn">
+                                            Explore more
+                                        </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div style="background-color: white;" class="container-fluid" id="reviews">
+        <h2 class="section-title text-center">Customer Reviews</h2>
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-05dec3a5-8703-461b-a113-b3a667ab4bbd" data-elfsight-app-lazy></div>
+
+    </div>
+
+
+
+
+
+   <footer style="background-color: #114ab1;" class="text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="photos\logo.png" alt="Shailaja Info Services" width="30" height="30" class="me-2">
+                        <h6 class="fw-bold mb-0">Shailaja Info Services</h6>
+                    </div>
+                    <p class="small text-white-50">Delivering Reliable Technology Solutions with Trust &
+                        Excellence</p>
+                    <p class="small mb-0">Shailaja Info Services</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="web.html" class="text-white text-decoration-none">🏠 Home</a>
+                        </li>
+                        <li class="mb-2"><a href="products.html" class="text-white text-decoration-none">🛍️
+                                Products</a></li>
+                        <li class="mb-2"><a href="about-contact.html" class="text-white text-decoration-none">ℹ️
+                                About & Contact</a></li>
+                        <li><a href="#reviews" class="text-white text-decoration-none">⭐ Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <h6 class="fw-bold mb-3">Contact Info</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="tel:+918123877741" class="text-white text-decoration-none">
+                                📞 +91 81238 77741
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="mailto:sagarjeerangi17@gmail.com" class="text-white text-decoration-none">
+                                📧 sagarjeerangi17@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/918123877741" target="_blank"
+                                class="text-white text-decoration-none">
+                                💬 WhatsApp Chat
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <h6 class="fw-bold mb-3">Follow Us</h6>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.instagram.com/sagar_jeerangi_sj?utm_source=qr&igsh=M29lY3IzbGtkMzdt"
+                            target="_blank" aria-label="Instagram" class="text-white fs-5">
+                            <i class="fab fa-instagram" style="color: #E4405F;"></i>
+                        </a>
+                        <a href="https://wa.me/918123877741" target="_blank" aria-label="WhatsApp"
+                            class="text-white fs-5">
+                            <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        </a>
+                        <a href="mailto:sagarjeerangi17@gmail.com" aria-label="Email" class="text-white fs-5">
+                            <i class="fas fa-envelope" style="color: #EA4335;"></i>
+                        </a>
+                        <a href="tel:+918123877741" aria-label="Phone" class="text-white fs-5">
+                            <i class="fas fa-phone" style="color: #0084FF;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="bg-white-50">
+            <div class="text-center text-white-50 small">
+                <p class="mb-0">Shailaja Info Services. All rights reserved. | Gangavathi, Karnataka</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
