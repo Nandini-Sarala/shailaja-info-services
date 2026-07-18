@@ -9,6 +9,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="all.min.css">
+    <link rel="stylesheet" href="polish.css">
     <style>
         .scrollspy-example {
             height: 100vh;
@@ -135,88 +136,11 @@
                 <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
                     class="scrollspy-example" tabindex="0">
 
-
-                    <div class="row mb-3">
-                        <div class="col-12 col-sm-6 col-lg-4">
-
-                            <div class="card shadow-sm">
-
-                                <img src="photos/r1.PNG" alt="router" height="225" width="100%">
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        <strong class="d-inline-block mb-2 text-primary-emphasis">D-link</strong>
-                                    <h3 class="mb-0">
-                                        D-Link DGS-1016A 16-Port Gigabit</h3>
-                                    <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
-                                    <p class="card-text mb-auto">Ethernet Speed Gigabit,
-                                        Number of ports 16 ports,
-                                        Housing Plastic,
-                                    </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-primary"> <a
-                                                    href="https://wa.me/918123877741?text=Hi%20I%20am%20interested%20in%20D-Link DGS-1016A 16-Port Gigabit%20Router"
-                                                    class="btn" target="_blank">
-                                                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                                                </a></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-4">
-
-                            <div class="card shadow-sm">
-
-                                <img src="photos/r2.PNG" alt="Router" height="225" width="100%">
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        <strong class="d-inline-block mb-2 text-primary-emphasis">D-link</strong>
-                                    <h3 class="mb-0">D-Link DIR-615 Wireless-N300 Router</h3>
-                                    <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
-                                    <p class="card-text mb-auto">Great Speed,Maximum Coverage,Flexible connectivity for
-                                        your devices,High Connectivity
-                                    </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-primary"> <a
-                                                    href="https://wa.me/918123877741?text=Hi%20I%20am%20interested%20in%20D-Link DIR-615 Wireless-N300%20Router"
-                                                    class="btn" target="_blank">
-                                                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                                                </a></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-4">
-
-                            <div class="card shadow-sm">
-
-                                <img src="photos/r3.PNG" alt="router" height="225" width="100%">
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        <strong class="d-inline-block mb-2 text-primary-emphasis">Tenda</strong>
-                                    <h3 class="mb-0">Tenda N301 N300 Wireless </h3>
-                                    <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
-                                    <p class="card-text mb-auto">Tenda N301 N300 Wireless Wi-Fi Router 300Mbps
-                                        White,10/100Mbps WAN port.
-
-                                    </p>
-                                    </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-primary"> <a
-                                                    href="https://wa.me/918123877741?text=Hi%20I%20am%20interested%20in%20Tenda%20N301%20N300%20Wireless%20Router"
-                                                    class="btn" target="_blank">
-                                                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                                                </a></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Router product cards are rendered here dynamically from Firebase -->
+                    <div id="router-products">
+                        <p class="text-muted">Loading products...</p>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -306,6 +230,82 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <!-- Dynamic product rendering (Firebase) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEwExSzJj_bW89TpEP-Uj2xjbvhZz_nQ8",
+            authDomain: "shailaja-info-services.firebaseapp.com",
+            databaseURL: "https://shailaja-info-services-default-rtdb.firebaseio.com",
+            projectId: "shailaja-info-services",
+            storageBucket: "shailaja-info-services.firebasestorage.app",
+            messagingSenderId: "904761185589",
+            appId: "1:904761185589:web:bcba82515735a90f2f287c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str == null ? '' : String(str);
+            return div.innerHTML;
+        }
+
+        function cardHtml(product) {
+            const brand = escapeHtml(product.brand);
+            const title = escapeHtml(product.title);
+            const description = escapeHtml(product.description);
+            const image = product.image || '';
+            const waText = product.whatsappText || `Hi I am interested in ${product.title || ''}`;
+            const waUrl = `https://wa.me/918123877741?text=${encodeURIComponent(waText)}`;
+
+            return `
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card shadow-sm">
+                  <img src="${image}" alt="${brand}" height="225" width="100%">
+                  <div class="card-body">
+                    <p class="card-text">
+                      <strong class="d-inline-block mb-2 text-primary-emphasis">${brand}</strong>
+                      <h3 class="mb-0">${title}</h3>
+                      <p class="card-text mb-auto">${description}</p>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary">
+                          <a href="${waUrl}" class="btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                          </a>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+        }
+
+        const container = document.getElementById('router-products');
+        onValue(ref(db, 'products/router'), (snapshot) => {
+            const data = snapshot.val();
+            if (!data) {
+                container.innerHTML = '<p class="text-muted">No products available right now.</p>';
+                return;
+            }
+            const items = Object.values(data);
+            let html = '';
+            for (let i = 0; i < items.length; i += 3) {
+                const rowItems = items.slice(i, i + 3);
+                html += `<div class="row mb-3">${rowItems.map(cardHtml).join('')}</div>`;
+            }
+            container.innerHTML = html;
+        }, (error) => {
+            console.error('Failed to load products:', error);
+            container.innerHTML = '<p class="text-danger">Could not load products. Please try again later.</p>';
+        });
+    </script>
 </body>
 
 </html>

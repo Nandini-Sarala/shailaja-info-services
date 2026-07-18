@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Owner Admin - Shailaja Info Services</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="polish.css">
+</head>
+
+<body style="background-color:#f5f5f5;">
+
+  <nav style="background-color: #114ab1;" class="navbar navbar-dark">
+    <div class="container-fluid">
+      <a href="index.html" class="btn btn-outline-light btn-sm me-3">← Back</a>
+      <span class="navbar-brand mb-0 h5">Shailaja Info Services — Owner Admin</span>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+
+    <!-- LOGIN SECTION -->
+    <div id="login-section" class="row justify-content-center">
+      <div class="col-12 col-md-5">
+        <div class="card shadow-sm p-4">
+          <h4 class="mb-3">Owner Login</h4>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" id="login-email" class="form-control" autocomplete="username">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" id="login-password" class="form-control" autocomplete="current-password">
+          </div>
+          <button id="login-btn" class="btn btn-primary w-100">Log In</button>
+          <div id="login-error" class="text-danger small mt-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN PANEL (hidden until logged in) -->
+    <div id="admin-panel" style="display:none;">
+
+      <div class="card shadow-sm p-4 mb-4">
+        <h5 class="mb-3">One-time setup</h5>
+        <p class="text-muted small">
+          Click this once to load ALL of your existing products (every category — Laptops, Router,
+          Accessories, Keyboard, Webcam, and so on) into the database.
+          Running it more than once will create duplicate entries, so use the delete list below
+          if you ever need to clean up.
+        </p>
+        <button id="seed-btn" class="btn btn-outline-secondary">Seed all existing products (every category)</button>
+        <div id="seed-status" class="small mt-2"></div>
+      </div>
+
+      <div class="card shadow-sm p-4 mb-4">
+        <h5 class="mb-3">Add a product</h5>
+        <form id="add-product-form">
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <label class="form-label">Category</label>
+              <select id="p-category" class="form-select" required>
+                <option value="laptops">Laptops</option>
+                <option value="access">Accessories</option>
+                <option value="keyboard">Keyboard</option>
+                <option value="crimping">Crimping Tools</option>
+                <option value="cabinet">Cabinet</option>
+                <option value="cooler">Cpu Cooler</option>
+                <option value="dvd">DVD drive</option>
+                <option value="earpods">Earpods</option>
+                <option value="graphics">Graphics Card</option>
+                <option value="fscanner">Fingerprint Scanner</option>
+                <option value="webcam">Webcam</option>
+                <option value="memocard">Memory Card</option>
+                <option value="mouse">Mouse</option>
+                <option value="pendrive">Pendrive</option>
+                <option value="printer">Printer</option>
+                <option value="powerbank">Powerbank</option>
+                <option value="router">Router</option>
+                <option value="ssd">SSD</option>
+                <option value="motherboard">Motherboard</option>
+                <option value="smps">SMPS</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label">Brand</label>
+              <input type="text" id="p-brand" class="form-control" placeholder="e.g. HP" required>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label">Title</label>
+              <input type="text" id="p-title" class="form-control" placeholder="e.g. HP 240 G8" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Description</label>
+              <textarea id="p-description" class="form-control" rows="3"
+                placeholder="e.g. Intel i3 11th generation | 8GB DDR4 RAM | 256GB nvme SSD | Windows 10" required></textarea>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Product image (from your device)</label>
+              <input type="file" id="p-image" accept="image/*" class="form-control" required>
+              <div class="form-text">Large photos are automatically resized/compressed before saving.</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">WhatsApp message</label>
+              <input type="text" id="p-whatsapp" class="form-control"
+                placeholder="Auto-fills from the title as you type — edit if you'd like something different">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success mt-3">Add Product</button>
+          <div id="add-status" class="small mt-2"></div>
+        </form>
+      </div>
+
+      <div class="card shadow-sm p-4">
+        <h5 class="mb-3">Existing products</h5>
+        <div class="mb-3">
+          <label class="form-label me-2">Category:</label>
+          <select id="list-category" class="form-select d-inline-block w-auto">
+            <option value="laptops">Laptops</option>
+            <option value="access">Accessories</option>
+            <option value="keyboard">Keyboard</option>
+            <option value="crimping">Crimping Tools</option>
+            <option value="cabinet">Cabinet</option>
+            <option value="cooler">Cpu Cooler</option>
+            <option value="dvd">DVD drive</option>
+            <option value="earpods">Earpods</option>
+            <option value="graphics">Graphics Card</option>
+            <option value="fscanner">Fingerprint Scanner</option>
+            <option value="webcam">Webcam</option>
+            <option value="memocard">Memory Card</option>
+            <option value="mouse">Mouse</option>
+            <option value="pendrive">Pendrive</option>
+            <option value="printer">Printer</option>
+            <option value="powerbank">Powerbank</option>
+            <option value="router">Router</option>
+            <option value="ssd">SSD</option>
+            <option value="motherboard">Motherboard</option>
+            <option value="smps">SMPS</option>
+          </select>
+        </div>
+        <div id="product-list" class="list-group"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+    import {
+      getDatabase,
+      ref,
+      push,
+      remove,
+      onValue
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDEwExSzJj_bW89TpEP-Uj2xjbvhZz_nQ8",
+      authDomain: "shailaja-info-services.firebaseapp.com",
+      databaseURL: "https://shailaja-info-services-default-rtdb.firebaseio.com",
+      projectId: "shailaja-info-services",
+      storageBucket: "shailaja-info-services.firebasestorage.app",
+      messagingSenderId: "904761185589",
+      appId: "1:904761185589:web:bcba82515735a90f2f287c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const loginSection = document.getElementById('login-section');
+    const adminPanel = document.getElementById('admin-panel');
+
+    // ---- Auth state ----
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginSection.style.display = 'none';
+        adminPanel.style.display = 'block';
+        attachProductListListener(document.getElementById('list-category').value);
+      } else {
+        loginSection.style.display = 'block';
+        adminPanel.style.display = 'none';
+      }
+    });
+
+    document.getElementById('login-btn').addEventListener('click', async () => {
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const errorEl = document.getElementById('login-error');
+      errorEl.textContent = '';
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (err) {
+        errorEl.textContent = 'Login failed: ' + err.message;
+      }
+    });
+
+    // ---- Image compression helper ----
+    function compressImageToBase64(file, maxWidth = 600, quality = 0.6) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Could not read file'));
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onerror = () => reject(new Error('Could not read image'));
+          img.onload = () => {
+            const scale = Math.min(1, maxWidth / img.width);
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // ---- Live auto-fill for WhatsApp message ----
+    const titleInput = document.getElementById('p-title');
+    const whatsappInput = document.getElementById('p-whatsapp');
+    let whatsappManuallyEdited = false;
+
+    titleInput.addEventListener('input', () => {
+      if (!whatsappManuallyEdited) {
+        whatsappInput.value = titleInput.value.trim()
+          ? `Hi I am interested in ${titleInput.value.trim()}`
+          : '';
+      }
+    });
+
+    whatsappInput.addEventListener('input', () => {
+      whatsappManuallyEdited = true;
+    });
+
+    // ---- Add product ----
+    document.getElementById('add-product-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById('add-status');
+      statusEl.textContent = 'Saving...';
+      statusEl.className = 'small mt-2 text-muted';
+
+      try {
+        const category = document.getElementById('p-category').value;
+        const brand = document.getElementById('p-brand').value.trim();
+        const title = document.getElementById('p-title').value.trim();
+        const description = document.getElementById('p-description').value.trim();
+        const whatsappTextInput = document.getElementById('p-whatsapp').value.trim();
+        const whatsappText = whatsappTextInput || `Hi I am interested in ${title}`;
+        const file = document.getElementById('p-image').files[0];
+
+        if (!file) throw new Error('Please choose an image.');
+
+        const image = await compressImageToBase64(file);
+
+        await push(ref(db, `products/${category}`), {
+          brand, title, description, image, whatsappText,
+          createdAt: Date.now()
+        });
+
+        statusEl.textContent = 'Product added successfully.';
+        statusEl.className = 'small mt-2 text-success';
+        e.target.reset();
+        whatsappManuallyEdited = false;
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err.message;
+        statusEl.className = 'small mt-2 text-danger';
+      }
+    });
+
+    // ---- Product list + delete ----
+    let currentListenerCategory = null;
+    function attachProductListListener(category) {
+      currentListenerCategory = category;
+      const listEl = document.getElementById('product-list');
+      onValue(ref(db, `products/${category}`), (snapshot) => {
+        if (currentListenerCategory !== category) return; // stale listener from a previous category
+        const data = snapshot.val();
+        listEl.innerHTML = '';
+        if (!data) {
+          listEl.innerHTML = '<div class="text-muted small">No products in this category yet.</div>';
+          return;
+        }
+        Object.entries(data).forEach(([key, product]) => {
+          const item = document.createElement('div');
+          item.className = 'list-group-item d-flex justify-content-between align-items-center';
+          item.innerHTML = `
+            <div>
+              <strong>${product.brand || ''}</strong> — ${product.title || ''}
+            </div>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+          `;
+          item.querySelector('button').addEventListener('click', async () => {
+            if (confirm(`Delete "${product.title}"? This cannot be undone.`)) {
+              await remove(ref(db, `products/${category}/${key}`));
+            }
+          });
+          listEl.appendChild(item);
+        });
+      });
+    }
+
+    document.getElementById('list-category').addEventListener('change', (e) => {
+      attachProductListListener(e.target.value);
+    });
+
+    // ---- One-time seed of existing static products ----
+    const seedLaptops = [
+      { brand: "HP Laptop", title: "HP 240 G8", description: "Intel i3 11th generation | 8GB DDR4 RAM | 256GB nvme SSD | Windows 10", image: "photos/l1.jpeg", whatsappText: "Hi I am interested in HP 240 G8 Laptop" },
+      { brand: "HP Laptop", title: "HP", description: "Intel i3 8th generation | 4GB RAM | 256GB SSD | Windows 10", image: "photos/l2.jpeg", whatsappText: "Hi I am interested in HP G8 Laptop" },
+      { brand: "Dell Laptop", title: "Dell", description: "Intel i5 6th generation | 8GB RAM | 1TB HDD | Windows 10", image: "photos/l3.jpeg", whatsappText: "Hi I am interested in Dell i5 6th Laptop" },
+      { brand: "DELL Laptop", title: "Dell Inspiron", description: "Intel i5 7th generation | 8GB DDR4 RAM | 256GB SSD | Windows 10", image: "photos/l4.jpeg", whatsappText: "Hi I am interested in Dell Inspiron i5 8th Laptop" },
+      { brand: "Lenovo Laptop", title: "Lenovo IdeaPad S145", description: "Intel i3 8th generation | 4GB RAM | 1TB HDD | Windows 10", image: "photos/l5.jpeg", whatsappText: "Hi I am interested in Lenovo IdeaPad S145 Laptop" },
+      { brand: "HP Laptop", title: "HP 15-fd0490TU", description: "Intel i3 13th generation | 8GB DDR4 RAM | 512 GB SSD | Windows 10", image: "photos/l6.jpeg", whatsappText: "Hi I am interested in HP 15-fd0490TU Laptop" },
+      { brand: "HP Laptop", title: "HP pavilion", description: "Intel i5 8th generation | 8GB DDR4 RAM | 1TB HDD | Windows 10", image: "photos/l7.jpeg", whatsappText: "Hi I am interested in HP Pavilion Laptop" },
+      { brand: "HP Laptop", title: "HP zbook 15 g6", description: "Intel i7 8th generation | 16GB DDR4 RAM | 512GB NVME SSD | Windows 10", image: "photos/l8.jpeg", whatsappText: "Hi I am interested in HP ZBook 15 G6 Laptop" },
+      { brand: "Dell Laptop", title: "Dell latitude 3420", description: "Intel i7 11th generation | 8GB DDR4 RAM | 512 GB SSD NVMe | Windows 10", image: "photos/l9.jpeg", whatsappText: "Hi I am interested in Dell Latitude 3420 Laptop" }
+    ];
+
+    const seedRouters = [
+      { brand: "D-link", title: "D-Link DGS-1016A 16-Port Gigabit", description: "Ethernet Speed Gigabit, Number of ports 16 ports, Housing Plastic", image: "photos/r1.PNG", whatsappText: "Hi I am interested in D-Link DGS-1016A 16-Port Gigabit Router" },
+      { brand: "D-link", title: "D-Link DIR-615 Wireless-N300 Router", description: "Great Speed,Maximum Coverage,Flexible connectivity for your devices,High Connectivity", image: "photos/r2.PNG", whatsappText: "Hi I am interested in D-Link DIR-615 Wireless-N300 Router" },
+      { brand: "Tenda", title: "Tenda N301 N300 Wireless", description: "Tenda N301 N300 Wireless Wi-Fi Router 300Mbps White,10/100Mbps WAN port.", image: "photos/r3.PNG", whatsappText: "Hi I am interested in Tenda N301 N300 Wireless Router" }
+    ];
+
+    document.getElementById('seed-btn').addEventListener('click', async () => {
+      const statusEl = document.getElementById('seed-status');
+      statusEl.textContent = 'Seeding...';
+      statusEl.className = 'small mt-2 text-muted';
+      try {
+        const seedData = {
+          laptops: seedLaptops,
+          router: seedRouters,
+          access: [{"brand": "Laptop Accessories", "title": "Laptop Adapter", "description": "Artis 65Watt Universal Laptop Adapter with 8 Interchangeable pins", "image": "photos/a1.png", "whatsappText": "Hi I am interested in Artis 65watt Laptop Adapter"}, {"brand": "Eira", "title": "EiRA Cable HDMI Male to VGA Female Converter ER-2701", "description": "HDMI Male to VGA Female Converter ER-2701,Suitable for all HDMI input and VGA output interface devices", "image": "photos/a4.PNG", "whatsappText": "Hi I am interested in Eira HDMI Male to VGA Female Converter ER-2701"}, {"brand": "Eira", "title": "EiRA Cable Display Port Male to VGA Female Converter ER-2706", "description": "Display Port Male to VGA Female Converter ER-2706,Input: DP(M), Output: VGA(F)", "image": "photos/a3.PNG", "whatsappText": "Hi I am interested in Eira Display Port Male to VGA Female Converter ER-2706"}, {"brand": "D-Link", "title": "D-Link Patch Cord cat 6 \u2013 2 meter", "description": "Conductor: 24 AWG, Snagless cable, 1000base-t Ethernet transmission...", "image": "photos/a2.png", "whatsappText": "Hi I am interested in D-Link Patch Cord cat 6 \u2013 2 meter"}, {"brand": "Fingers", "title": "Finger's Quadrant U2.0 4-Port USB Hub", "description": "U2.0 4-Port USB Hub (4 x USB 2.0),High Speed Data Transfer up to 480 Mbps ...", "image": "photos/a5.png", "whatsappText": "Hi I am interested in Fingers Quadrant U2.0 4-Port USB Hub"}],
+          keyboard: [{"brand": "HP", "title": "HP HP115 wireless", "description": "Wireless right handed optic mouse with bluetooth(USB 2.0,Black)", "image": "photos/k1.PNG", "whatsappText": "Hi I am interested in HP 115 Wireless Keyboard"}, {"brand": "Dell", "title": "DELL KB216S", "description": "dellKB216S wired usb standard multi device keyboard compatible with desktop(black)", "image": "photos/k2.PNG", "whatsappText": "Hi I am interested in Dell KB216S Keyboard"}, {"brand": "Zebronics", "title": "Zebronics K20", "description": "Wired Keyboard,1.2m cable,UV coated keys,USB interface,Retractable stand,plug&play", "image": "photos/k3.PNG", "whatsappText": "Hi I am interested in Zebronics K20 Keyboard"}, {"brand": "HP", "title": "HP K100", "description": "HP K100 Series Wired USB Standard Desktop Compatible with laptop,mac stand support(black)", "image": "photos/k4.PNG", "whatsappText": "Hi I am interested in HP K100 Keyboard"}, {"brand": "Hammok", "title": "Hammok Glory", "description": "Hammok Glory USB keyboards,wired typist ,1.5m cable,compatible with desktop laptop(black)", "image": "photos/k5.PNG", "whatsappText": "Hi I am interested in Hammok Glory Keyboard"}],
+          crimping: [{"brand": "Crimping tool", "title": "Plug Crimper", "description": "D-Link Modular Plug Crimper NTC-001", "image": "photos/ct1.PNG", "whatsappText": "Hi I am interested in D-Link Modular Plug Crimper NTC-001"}],
+          cabinet: [{"brand": "Cooler Master", "title": "MasterBox K501L RGB V2 Mid Tower", "description": "Gaming Case with Pre-Installed RGB Fan,360 Radiator Support,PSU Shroud", "image": "photos/c2.PNG", "whatsappText": "Hi I am interested in MasterBox K501L RGB V2 Mid Tower"}, {"brand": "Ant Esports", "title": "Ant Esports Crystal X7", "description": "Mid Tower ATX, Micro-ATX, Mini-ITX Black Cabinet with 7x120mm Fans,Supports large GPUs up to 420 mm", "image": "photos/c3.PNG", "whatsappText": "Hi I am interested in Ant Esports Crystal X7"}, {"brand": "Zebronics", "title": "Zeb Robust", "description": "Front & Side Wraparound Tempered Glass, 3x120mm Multicolor LED Ring Fans, Bottom PSU", "image": "photos/c4.PNG", "whatsappText": "Hi I am interested in Zebronics Zeb Robust Cabinet"}, {"brand": "Cooler Master", "title": "Cooler Master CMP510 Cabinet", "description": "ARGB Edge Strip, Ventilated PSU Shroud & 350mm GPU Clearance, ATX", "image": "photos/c1.PNG", "whatsappText": "Hi I am interested in Cooler Master CMP510 Cabinet"}],
+          cooler: [{"brand": "Cooler Master", "title": "Cooler Master MasterLiquid", "description": "MasterLiquid Lite 120 CPU Liquid Cooler,Dual dissipation pump,Robust FEP tubing ,Air balance fan design", "image": "photos/cc1.PNG", "whatsappText": "Hi I am interested in Cooler Master MasterLiquid Lite 120 CPU Liquid Cooler"}, {"brand": "Cooler Master", "title": "Cooler Master ML360", "description": "Cooler Master ML360 MasterLiquid SUB-Zero AIO CPU Liquid Cooler,Intel Cryo Cooling Technology,Software Enabled, Thermoelectric Cooling", "image": "photos/cc2.PNG", "whatsappText": "Hi I am interested in Cooler Master ML360 CPU Liquid Cooler"}, {"brand": "DeepCool", "title": "Deepcool CPU Liquid Cooler", "description": "Deepcool CPU Liquid Cooler for Socket GAMMAXX L240 V2 RGB LED", "image": "photos/cc3.PNG", "whatsappText": "Hi I am interested in Deepcool CPU Liquid Cooler"}, {"brand": "Gamdias", "title": "Gamdias AEOLUS M2-1201", "description": "Gamdias AEOLUS M2-1201 ARGB Case Fan,One Click, Sync All,A Neat Takeover,Outstanding Circuit Device", "image": "photos/cc4.PNG", "whatsappText": "Hi I am interested in Gamdias AEOLUS M2-1201 ARGB Case Fan"}],
+          dvd: [{"brand": "HP", "title": "HP USB External DVDRW Drive", "description": "USB 2.0/USB 3.0 (no power adapter needed),Media editing with Cyber link software,DVD+/-RW/CD-RW (up to 8.5GB); 8x DVD and 24x CD speeds; M-Disc compatible", "image": "photos/dvd1.PNG", "whatsappText": "Hi I am interested in HP USB External DVDRW Drive"}],
+          earpods: [{"brand": "pTron", "title": "pTron Tangent Rush", "description": "pTron Tangent Rush w/ 50Hrs Playtime, Pristine Sound, Dual-Device Pairing, Bluetooth 5.4 Wireless in-Ear Earphones with Mic, Voice Assistant, Type-C Fast Charging & IPX5 Water Resistant (Forest Green)", "image": "photos/ear1.PNG", "whatsappText": "Hi I am interested in pTron Tangent Rush Earbuds"}, {"brand": "Fire bolt", "title": "Fire bolt earpods", "description": "Fire-Boltt Aero TWS Earbuds Custom EQ, Wireless Bluetooth 5.4, Music & App Support, 50H Playtime, Fast Charging Case, 50ms Low Latency for Gaming, Touch Controls, IPX4 Waterproof, Clear Calls - Black", "image": "photos/ear2.PNG", "whatsappText": "Hi I am interested in Fire bolt earpods"}, {"brand": "HP", "title": "HP H120 Headset", "description": "HP H120 Stereo USB Headset, Plug-and-Play USB-A, Built-in Noise-canceling mic, Adjustable Head Strap, Padded Ear Cushions, 360-degree Bendable mic, 1-Year Limited Warranty, Black, 9Z4V9AA", "image": "photos/ear3.PNG", "whatsappText": "Hi I am interested in HP H120 Headset"}, {"brand": "HyperX", "title": "HyperX Cloud Stinger 2", "description": "HyperX Cloud Stinger 2 Core Gaming Headsets PS Black Lightweight, essential for PlayStation gaming,Easy-Access audio controls.", "image": "photos/ear4.PNG", "whatsappText": "Hi I am interested in HyperX Cloud Stinger 2 Headset"}, {"brand": "HyperX", "title": "HyperX CloudX Stinger", "description": "HyperX CloudX Stinger 2 Core Gaming Headsets Xbox White Lightweight, essential for Xbox,Swivel-to-mute noise-cancelling microphone...", "image": "photos/ear5.PNG", "whatsappText": "Hi I am interested in HyperX CloudX Stinger Headset"}, {"brand": "Poly", "title": "Poly Blackwire 3220", "description": "Poly Blackwire 3220 Stereo USB-C Headset +USB-C/A Adapter,Long-lasting comfort and portability...", "image": "photos/ear6.PNG", "whatsappText": "Hi I am interested in Poly Blackwire 3220 Headset"}],
+          graphics: [{"brand": "Aarvex", "title": "Aarvex Graphic Card GT610 2GB DDR3", "description": "Memory Size: 2GB, Memory Type: DDR3, Memory Interface: 64 Bit, GPU Clock: 612 MHz.", "image": "photos/gc3.PNG", "whatsappText": "Hi I am interested in Aarvex GT610 2GB DDR3 Graphics Card"}, {"brand": "Asus", "title": "Asus Graphic Card Gaming", "description": "Gaming ROG Strix GeForceR GTX 1660 Ti Edition 6GB GDDR6,Broadcast your gameplay,GPU Tweak II", "image": "photos/gc1.PNG", "whatsappText": "Hi I am interested in Asus Gaming Graphics Card"}, {"brand": "Colourfull", "title": "Colorful GeForce", "description": "Colorful GeForce GT 1030 4GB DDR4 RAM Graphics Card,Nvidia GeForce GT1030 Architecture with Nvidia Pascal technology", "image": "photos/gc2.PNG", "whatsappText": "Hi I am interested in Colorful GeForce Graphics Card"}, {"brand": "Gigabyte", "title": "Gigabyte GeForce GT 710 2GB DDR3", "description": "Integrated with the first 2048MB DDR3 memory and 64-bit memory interface,Core Clock: 954MHz, Features Dual-link DVI-D / D-Sub / HDMI", "image": "photos/gc4.PNG", "whatsappText": "Hi I am interested in Gigabyte GeForce GT 710 Graphics Card"}],
+          fscanner: [{"brand": "Mantra", "title": "Mantra MFS110", "description": "Mantra MFS110 L1 Fingerprint Scanner,Scratch free Sensor Surface,High speed USB 2.0 interface with secured communication,Auto Finger Detection", "image": "photos/fs1.PNG", "whatsappText": "Hi I am interested in Mantra MFS110 Fingerprint Scanner"}, {"brand": "CP Plus", "title": "CP-MTA-F1043", "description": "CP PLUS CP-MTA-F1043 Fingerprint Time Attendance,Support 1000 Fingerprints, Support ID Card, Password, Support 2 to 3 hours Battery Backup", "image": "photos/fs2.PNG", "whatsappText": "Hi I am interested in CP Plus CP-MTA-F1043 Fingerprint Time Attendance"}, {"brand": "Secugen", "title": "Secugen Hamster Pro 20", "description": "Secugen Hamster Pro 20 Biometric Finger Print Scanner ,Reject fake Fingerprints,Water Resistant + Rugged", "image": "photos/fs3.PNG", "whatsappText": "Hi I am interested in Secugen Hamster Pro 20 Biometric Finger Print Scanner"}, {"brand": "Startek", "title": "Startek FM220U", "description": "Startek FM220U Fingerprint Scanner,USB 2.0 high speed interface,Supported with Startek SDK for easy software development", "image": "photos/fs4.PNG", "whatsappText": "Hi I am interested in Startek FM220U Fingerprint Scanner"}],
+          webcam: [{"brand": "Zebronics", "title": "Zeb-live pro 1920", "description": "Zebronics Webcam with built-in microphone with night vision ethernet connectivity(black)", "image": "photos/wc1.PNG", "whatsappText": "Hi I am interested in Zebronics Webcam Zeb-live pro 1920"}, {"brand": "Fingers", "title": "Fingers webcam", "description": "Fingers 1080 Hi-Res Webcam,Full HD 1080p & HD 720p,Built-in High-Quality USB Microphone for Premium Sound", "image": "photos/wc2.PNG", "whatsappText": "Hi I am interested in Fingers Webcam Fingers webcam"}, {"brand": "frontech", "title": "frontech webcam", "description": "Frontech FT 2255 Plug & Play Webcam,built-in mic,led light,cmos sensor", "image": "photos/wc3.PNG", "whatsappText": "Hi I am interested in Frontech Webcam FT 2255"}, {"brand": "Logitech", "title": "Logitech C922 pro", "description": "Full HD 1080p at 30fps/720p at 60fps streaming,Customizable background replacement,Two Omnidirectional Mics,Fully adjustable tabletop tripod", "image": "photos/wc4.PNG", "whatsappText": "Hi I am interested in Logitech C922 Pro Webcam"}, {"brand": "Lapcare", "title": "lapcare lapcam HD 720P", "description": "supports video quality up to 1280x720 pixels with the latest version of skype,Noise Isolated Microphone,Plug N Play feature which uses USB 2.0", "image": "photos/wc5.PNG", "whatsappText": "Hi I am interested in Lapcare Lapcam HD 720P Webcam"}, {"brand": "Frontech", "title": "FRONTECH Webcam E-Cam FT-2252", "description": "E-Cam FT-2252 with Built In Mic,3 MP Image Resolution,LED Light,Automatic White Balance.", "image": "photos/wc6.PNG", "whatsappText": "Hi I am interested in Frontech Webcam E-Cam FT-2252"}],
+          memocard: [{"brand": "SanDisk", "title": "SanDisk Ultra", "description": "SDHC UHS-I Card 32GB 120MB/s for DSLR Cameras, for Full HD Recording,Great choice for compact to mid-range point-and-shoot cameras", "image": "photos/mc1.PNG", "whatsappText": "Hi I am interested in SanDisk Ultra 32GB Memory Card"}, {"brand": "SanDisk", "title": "SanDisk Ultra", "description": "SanDisk Ultra SDXC UHS-I Card 64GB 120MB/s for DSLR Cameras, for Full HD Recording, 10Y Warranty,Great choice for compact to mid-range point-and-shoot cameras", "image": "photos/mc2.PNG", "whatsappText": "Hi I am interested in SanDisk Ultra 64GB Memory Card"}, {"brand": "Samsung", "title": "Samsung EVO Plus", "description": "Samsung EVO Plus microSD Memory Card with SD Adapter 32GB,Up to 95 MB/s Read and 20 MB/s Write speed with Class 10 and U1 compatibility. Includes Full-Size SD Adapter.", "image": "photos/mc3.PNG", "whatsappText": "Hi I am interested in Samsung EVO Plus 32GB Memory Card"}],
+          mouse: [{"brand": "HP", "title": "HP M10 wired", "description": "HP M10 Wired USB Mouse with 3 Buttons High Definition 1000DPI Optical Tracking and Ambidextrous Design", "image": "photos/m2.PNG", "whatsappText": "Hi I am interested in HP M10 Wired Mouse"}, {"brand": "Dell", "title": "DELL MS116", "description": "Dell MS116 Wired Mouse, 1000 DPI, Scrolling Wheel, 2 Buttons, 1 x USB, Optical LED Tracking, Plug and Play, Scrolling Wheel, Black", "image": "photos/m3.PNG", "whatsappText": "Hi I am interested in Dell MS116 Wired Mouse"}, {"brand": "lenovo", "title": "lenovo 120", "description": "Wired Plug & Play USB Mouse, High Resolution 1600 DPI Optical Sensor, 3-Button Design with clickable Scroll Wheel", "image": "photos/m4.PNG", "whatsappText": "Hi I am interested in lenovo 120 Wired Mouse"}, {"brand": "HP", "title": "HP 240", "description": "HP 240 Bluetooth Wireless Mouse with 3 Buttons/1600 DPI Red Optical Tracking/Sleek and Ambidextrous", "image": "photos/m5.PNG", "whatsappText": "Hi I am interested in HP 240 Wireless Mouse"}, {"brand": "Frontech", "title": "Frontech Wired", "description": "Frontech Wired RGB Optical Mouse|USB Plug & Play|1.4m Braided Cable|1500 DPI|3 Button Mouse| Ergonomic Design", "image": "photos/m6.PNG", "whatsappText": "Hi I am interested in Frontech Wired Mouse"}, {"brand": "Zebronics", "title": "Zebronics Wireless", "description": "Groot Wireless Mouse (Bluetooth + Wireless)|2.4GHz Wireless | 1600 DPI | Nano Receiver | Silent Operation", "image": "photos/m7.PNG", "whatsappText": "Hi I am interested in Zebronics Wireless Mouse"}],
+          pendrive: [{"brand": "HP", "title": "HP 16GB/32GB/64GB", "description": "HP 16GB/32GB/64GB Pen Drive Steel Body USB 2.0,Stylish appearance which manifests your modern characteristics.", "image": "photos/pen1.PNG", "whatsappText": "Hi I am interested in HP 16GB Pen Drive"}, {"brand": "SanDisk", "title": "SanDisk 16GB/32GB/64GB", "description": "Sandisk Cruzer Blade 16/32/64 GB Usb Flash Drive/Pen Drive,Ultra-compact and portable USB flash drive.", "image": "photos/pen2.PNG", "whatsappText": "Hi I am interested in SanDisk 16GB Pen Drive"}, {"brand": "Sandesk", "title": "SanDisk Ultra", "description": "SanDisk Ultra Dual 16GB USB 3.0 OTG Pen Drive (Black),Free up space on your OTG-enabled Android phone...", "image": "photos/pen3.PNG", "whatsappText": "Hi I am interested in SanDisk Ultra 16GB Pen Drive"}, {"brand": "Sandisk", "title": "SanDisk Ultra 32/64 GB", "description": "SanDisk Ultra 64 GB Pen Drives type C (Black, Silver),Available in capacities from 8GB to 256GB for your photos, videos, music and other files.", "image": "photos/pen4.PNG", "whatsappText": "Hi I am interested in SanDisk Ultra 64GB Pen Drive"}],
+          printer: [{"brand": "Brother", "title": "Brother DCP-B7600DB", "description": "Brother DCP-B7600DB Multifunction Duplex Laser Printer, Best For Business With Affordable Toner,A4 print speed up to 34 ppm (Black)", "image": "photos/pr1.PNG", "whatsappText": "Hi I am interested in Brother DCP-B7600DB Multifunction Printer"}, {"brand": "Brother", "title": "Brother DCP-T530DW", "description": "Brother DCP-T530DW Multifunction (Print Scan Copy) WiFi Auto Duplex Ink Tank Printer,A4 print speed up to 16 ipm (Black)/ 9 ipm (Colour)", "image": "photos/pr2.PNG", "whatsappText": "Hi I am interested in Brother DCP-T530DW Multifunction Printer"}],
+          powerbank: [{"brand": "Artis", "title": "Artis AR-PB10000", "description": "Artis AR-PB10000 Slim Power Bank,10000mAH lithium polymer battery", "image": "photos/p1.PNG", "whatsappText": "Hi I am interested in Artis AR-PB10000 Powerbank"}, {"brand": "Fingers", "title": "FINGERS Digi P10", "description": "FINGERS Digi P10 Power Bank 10,000 mAh Li-PolymerDual Output - 2 x USB Type-A port, Dual Output - 1 x Micro USB & 1 x Type-C", "image": "photos/p2.PNG", "whatsappText": "Hi I am interested in FINGERS Digi P10 Powerbank"}, {"brand": "Frontech", "title": "Frontech Power Bank", "description": "Frontech Power Bank 10000mAh (PB-009),Input : V8 / Type C / Lightning Interface, Input voltage : 5V ~2.1A, Out 1 (USB) : 5V ~1A, Out 2 (USB) : 5V ~2.1A.", "image": "photos/p3.PNG", "whatsappText": "Hi I am interested in Frontech Power Bank"}],
+          ssd: [{"brand": "Consistent", "title": "Consistent SSD 128/256/512GB", "description": "SSD write cache is enabled, Low power consumption, Laptop and Desktop,Sequential 512KB Read and Write speeds up to 540MB/s and 500MB/s respectively", "image": "photos/ssd1.PNG", "whatsappText": "Hi I am interested in Consistent SSD 128/256/512GB"}, {"brand": "Crucial", "title": "Crucial SSD 120/240/480GB", "description": "480 GB, SSD write cache is enabled,Low power consumption, Laptop and Desktop,2.5Inch,/SATA 6 Gb/s interface, ATA modes supported", "image": "photos/ssd2.PNG", "whatsappText": "Hi I am interested in Crucial SSD 120/240/480GB"}, {"brand": "Gigabyte", "title": "Gigabyte SSD 120/240/480GB", "description": "Gigabyte SSD 480GB, 2.5Inch,/SATA 6 Gb/s interface, ATA modes supported,Sequential Read speed : up to 550 MB/s, Sequential Write speed : up to 480 MB/s", "image": "photos/ssd3.PNG", "whatsappText": "Hi I am interested in Gigabyte SSD 120/240/480GB"}, {"brand": "Hikvision", "title": "E100 128/256/512GB SSD", "description": "Hikvision E100 512GB SSD Internal 2.5-inch SATA Solid State Drive,Max. read speed (MB/S):550,Max. write speed (MB/S):550...", "image": "photos/ssd4.png", "whatsappText": "Hi I am interested in Hikvision E100 128/256/512GB SSD"}],
+          motherboard: [{"brand": "ASRock", "title": "ASRock Motherboard", "description": "ASRock Motherboard Micro ATX DDR3 1066 FM2A68M-DG3+,Socket FM2+,Chipset: AMD A68H (Bolton-D2H),", "image": "photos/mb1.PNG", "whatsappText": "Hi I am interested in ASRock Motherboard"}, {"brand": "Asus", "title": "Asus Motherboard", "description": "Asus Motherboard PRIME A320M-K Ultra Durable With LED lighting,2 x DIMM, Max. 32GB, DDR4 2400/2133 MHz Un-buffered, Non-ECC Memory", "image": "photos/mb2.PNG", "whatsappText": "Hi I am interested in Asus Motherboard"}, {"brand": "Biostar", "title": "Biostar Motherboard H61MHV2", "description": "Pentium / Celeron processors in the 1155 package, Supports 2 DIMM of DDR3 1600/1333/1066 MHz up to 16GB maximum capacity", "image": "photos/mb3.PNG", "whatsappText": "Hi I am interested in Biostar Motherboard H61MHV2"}, {"brand": "Frontech", "title": "Frontech H81 Motherboard FT-0471", "description": "Intel H81 Express, Data Rate DDR3, Maximum RAM Capacity 16 GB, Form Factor: Micro-ATX...", "image": "photos/mb4.PNG", "whatsappText": "Hi I am interested in Frontech H81 Motherboard FT-0471"}, {"brand": "Gigabyte", "title": "Gigabyte AMD A320M-S2H Ultra", "description": "Gigabyte AMD A320M-S2H Ultra Durable Motherboard with Hybrid Digital VRM Solution, NVMe PCIe 3.0 x4 22110 M.2, Realtek GbE LAN with cFosSpeed, Smart Fan 5, 3 Display Interfaces, Anti-Sulfur Resistors Design", "image": "photos/mb5.PNG", "whatsappText": "Hi I am interested in Gigabyte A320M-S2H Ultra Motherboard"}],
+          smps: [{"brand": "Antec", "title": "Antec HCG750 Bronze", "description": "Antec HCG750 Bronze 80 Plus Gaming SMPS Bronze Certified 750 Watt Fully Modular,99%+12V - Output for maximum CPU's; GPU support", "image": "photos/smps1.PNG", "whatsappText": "Hi I am interested in Antec HCG750 Bronze SMPS"}, {"brand": "Cooler Master", "title": "Cooler Master MWE 650W", "description": "Cooler Master MWE 650W 80 Plus 230V SMPS,MWE provides you full standard protection (OVP/SCP/OPP) plus built-in over temperature protection (OTP)", "image": "photos/smps2.PNG", "whatsappText": "Hi I am interested in Cooler Master MWE 650W SMPS"}, {"brand": "Cooler Master", "title": "SMPS MWE 750", "description": "Cooler Master SMPS MWE 750 BRONZE V2, 80 PLUS BRONZE CERTIFIED POWER SUPPLY,DC-to-DC Technology, 120mm HDB Fan...", "image": "photos/smps3.PNG", "whatsappText": "Hi I am interested in Cooler Master SMPS MWE 750 BRONZE V2"}, {"brand": "CP Plus", "title": "CP PLUS Metal Case", "description": "CP PLUS Metal Case Power Supply for CCTV Bullet & Dome Camera-20 Amp CP-DPS-MD200-12D,Rain Proof...", "image": "photos/smps4.png", "whatsappText": "Hi I am interested in CP Plus Metal Case SMPS"}, {"brand": "Foxin", "title": "SMPS 450 WATT", "description": "Output Over Voltage Protection. Fan for temperature control....", "image": "photos/smps5.PNG", "whatsappText": "Hi I am interested in Foxin 450W SMPS"}],
+        };
+
+        for (const [category, items] of Object.entries(seedData)) {
+          for (const p of items) {
+            await push(ref(db, `products/${category}`), { ...p, createdAt: Date.now() });
+          }
+        }
+        statusEl.textContent = 'Seeding complete.';
+        statusEl.className = 'small mt-2 text-success';
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err.message;
+        statusEl.className = 'small mt-2 text-danger';
+      }
+    });
+  </script>
+</body>
+
+</html>

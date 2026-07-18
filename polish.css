@@ -1,0 +1,452 @@
+/* ============================================================
+   Shailaja Info Services — Apple-Inspired Redesign
+   Muted black/white/gray palette. Blue (#114ab1) used ONLY
+   as an accent (links, focus states, active states, dividers).
+   Same filename (polish.css) so every page picks this up
+   automatically — no HTML edits needed.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #1d1d1f;         /* Apple's near-black text */
+  --ink-soft: #6e6e73;    /* Apple's secondary gray text */
+  --hairline: #d2d2d7;    /* Apple's thin divider gray */
+  --surface: #ffffff;
+  --surface-alt: #f5f5f7; /* Apple's signature light gray section bg */
+  --accent: #114ab1;      /* brand blue — accent only */
+  --accent-dark: #0c3782;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 980px;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+}
+
+h3.mb-0 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-top: 0.4rem;
+}
+
+p, .card-text, li {
+  color: var(--ink-soft);
+}
+
+.card-text.mb-auto,
+p.card-text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+strong.text-primary-emphasis {
+  color: var(--ink-soft) !important;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+a {
+  color: var(--accent);
+  transition: opacity 0.2s var(--ease);
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Navbar (kept original blue background & soft gray text) ---------- */
+nav.navbar .nav-link {
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.85rem !important;
+  transition: opacity 0.2s var(--ease);
+  opacity: 0.85;
+  color: #d2d2d7 !important;
+}
+
+nav.navbar .navbar-brand,
+nav.navbar .navbar-brand h5,
+nav.navbar .nav-link h5 {
+  color: #d2d2d7 !important;
+}
+
+nav.navbar .nav-link:hover,
+nav.navbar .nav-link.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+nav.navbar .navbar-toggler {
+  border: none;
+  box-shadow: none !important;
+}
+
+#index-logout-btn,
+#add-products-nav-link {
+  color: #fff !important;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: -0.005em;
+  padding: 0.5rem 1.35rem;
+  transition: all 0.2s var(--ease);
+  border-width: 1px;
+}
+
+.btn-outline-primary {
+  border-color: var(--hairline);
+  color: var(--ink);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.btn-outline-primary i.fa-whatsapp {
+  color: #25D366;
+}
+
+.btn-outline-primary:hover i.fa-whatsapp {
+  color: #25D366;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.btn-success {
+  background: var(--accent);
+  border-color: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+.btn-success:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.btn-outline-secondary {
+  border-color: var(--hairline);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+}
+
+.btn-outline-danger {
+  border-radius: var(--radius-pill);
+}
+
+.btn-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---------- Category sidebar (minimal, no box) ---------- */
+#list-example.list-group {
+  background: transparent;
+  box-shadow: none;
+}
+
+.category h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 0.5rem;
+}
+
+.list-group-item.list-group-item-action {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  border-left: 2px solid transparent;
+  padding: 0.7rem 0.9rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  transition: all 0.2s var(--ease);
+}
+
+.list-group-item.list-group-item-action:hover {
+  color: var(--ink);
+  background: var(--surface-alt);
+}
+
+.list-group-item.list-group-item-action.active {
+  background: var(--surface-alt);
+  color: var(--ink) !important;
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- Cards (flat, generous radius, subtle hover) ---------- */
+.card {
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--surface-alt);
+  box-shadow: none;
+  overflow: hidden;
+  transition: transform 0.35s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card img {
+  object-fit: cover;
+  background: #fff;
+}
+
+.card-body {
+  padding: 1.25rem 1.35rem 1.5rem;
+}
+
+.contact-card,
+#about .card {
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+/* ---------- Carousel (full-bleed, big bold overlay text) ---------- */
+.carousel-item img {
+  border-radius: 0;
+  filter: brightness(0.75);
+}
+
+.carousel-caption {
+  background: transparent;
+  text-align: left;
+  left: 8%;
+  right: auto;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 480px;
+  padding: 0;
+}
+
+.carousel-caption h3,
+.carousel-caption h4,
+.carousel-caption h5 {
+  color: #fff !important;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.carousel-caption p {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+}
+
+.carousel-caption .btn-dark {
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: var(--ink);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+}
+
+.carousel-caption .btn-dark:hover {
+  background: var(--surface-alt);
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #fff;
+  opacity: 0.5;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+}
+
+/* ---------- Sections & spacing ---------- */
+.container.my-4 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.album {
+  background: var(--surface) !important;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+
+#reviews {
+  background: var(--surface-alt) !important;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+#reviews .section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  position: relative;
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+#reviews .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ---------- Footer (kept original blue background & white text) ---------- */
+footer {
+  padding-top: 3.5rem !important;
+}
+
+footer h6.fw-bold {
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 1rem !important;
+}
+
+footer p,
+footer a,
+footer li {
+  font-size: 0.85rem;
+}
+
+footer a.text-white,
+footer a.text-white-50 {
+  transition: opacity 0.2s var(--ease);
+  opacity: 0.9;
+}
+
+footer a.text-white:hover,
+footer a.text-white-50:hover {
+  opacity: 1;
+}
+
+footer .fs-5:hover {
+  transform: translateY(-2px);
+  display: inline-block;
+}
+
+/* ---------- Forms (admin.html, minimal Apple-style inputs) ---------- */
+.form-control,
+.form-select {
+  border-radius: var(--radius-sm);
+  border-color: var(--hairline);
+  background: var(--surface-alt);
+  padding: 0.6rem 0.95rem;
+  font-size: 0.92rem;
+  transition: all 0.2s var(--ease);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(17, 74, 177, 0.12);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+#admin-panel .card,
+#login-section .card {
+  background: var(--surface-alt);
+  border-radius: var(--radius-lg);
+  padding: 2rem !important;
+}
+
+/* ---------- Scrollbar ---------- */
+.scrollspy-example::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollspy-example::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 10px;
+}
+
+.scrollspy-example::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Misc cleanups ---------- */
+hr {
+  border-color: var(--hairline);
+  opacity: 1;
+}
+
+.shadow-sm,
+.shadow-lg,
+.shadow {
+  box-shadow: none !important;
+}
